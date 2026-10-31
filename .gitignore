@@ -1,0 +1,19 @@
+# Built Webmin module package (publish it as a GitHub Release instead)
+*.wbm.gz
+webmin/dist/
+
+# Never commit WireGuard configs, keys or generated client files
+*.conf
+*.key
+*.psk
+.endpoint
+clients/
+
+# Article drafts (not part of the published project)
+clanok/
+
+# Local tool and OS files
+.claude/
+Thumbs.db
+Desktop.ini
+.DS_Store

@@ -1,0 +1,14 @@
+# Normalize line endings. Everything here runs on Linux, so scripts and the
+# Webmin module (including files without extension such as lang/en) must be LF.
+* text=auto
+*.sh text eol=lf
+*.cgi text eol=lf
+*.pl text eol=lf
+webmin/wireguard/** text eol=lf
+
+*.png binary
+*.gif binary
+*.gz binary
+
+# GitHub otherwise reports the Perl sources as Prolog
+*.pl linguist-language=Perl

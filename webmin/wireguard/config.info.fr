@@ -1,0 +1,10 @@
+conf_dir=Répertoire de configuration de WireGuard,0,30
+interface=Nom de l'interface WireGuard,0,10
+wg=Chemin de la commande wg,0,30
+wg_quick=Chemin de la commande wg-quick,0,30
+qrencode=Chemin de la commande qrencode,0,30
+lan=LAN routé par le tunnel (AllowedIPs du client; auto = sous-réseau de la carte réseau),0,25
+dns=Serveur DNS pour les clients (auto = passerelle par défaut),3,Aucun
+sysctl_file=Fichier sysctl pour le routage IP,0,35
+ufw_sysctl=Fichier de configuration sysctl d'ufw,0,35
+backup_dir=Répertoire des sauvegardes créées à la désinstallation,0,30

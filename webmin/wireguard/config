@@ -1,0 +1,10 @@
+conf_dir=/etc/wireguard
+interface=wg0
+wg=wg
+wg_quick=wg-quick
+qrencode=qrencode
+lan=auto
+dns=auto
+sysctl_file=/etc/sysctl.d/99-wireguard.conf
+ufw_sysctl=/etc/ufw/sysctl.conf
+backup_dir=/root

@@ -1,0 +1,10 @@
+conf_dir=Priečinok s konfiguráciou WireGuard,0,30
+interface=Názov rozhrania WireGuard,0,10
+wg=Cesta k príkazu wg,0,30
+wg_quick=Cesta k príkazu wg-quick,0,30
+qrencode=Cesta k príkazu qrencode,0,30
+lan=LAN smerovaná cez tunel (AllowedIPs klienta; auto = podsieť sieťovej karty),0,25
+dns=DNS server pre klientov (auto = predvolená brána),3,Žiadny
+sysctl_file=Súbor sysctl pre IP forwarding,0,35
+ufw_sysctl=Konfiguračný súbor sysctl pre ufw,0,35
+backup_dir=Priečinok pre zálohy vytvorené pri odinštalovaní,0,30

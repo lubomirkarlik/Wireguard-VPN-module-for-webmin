@@ -1,0 +1,10 @@
+conf_dir=WireGuard 設定ディレクトリ,0,30
+interface=WireGuard インターフェース名,0,10
+wg=wg コマンドのパス,0,30
+wg_quick=wg-quick コマンドのパス,0,30
+qrencode=qrencode コマンドのパス,0,30
+lan=トンネル経由でルーティングする LAN (クライアントの AllowedIPs; auto = ネットワークカードのサブネット),0,25
+dns=クライアント用 DNS サーバー (auto = デフォルトゲートウェイ),3,なし
+sysctl_file=IP フォワーディング用の sysctl ファイル,0,35
+ufw_sysctl=ufw の sysctl 設定ファイル,0,35
+backup_dir=アンインストール時に作成するバックアップのディレクトリ,0,30
