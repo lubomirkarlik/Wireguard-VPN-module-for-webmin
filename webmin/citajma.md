@@ -167,7 +167,7 @@ WAN sú na obrázkoch zakryté:
    configuration file** a importuj súbor do aplikácie WireGuard.
 4. Stránku potom zavri, súkromný kľúč sa už nikde neukladá.
 
-   ![Stránka po vytvorení klienta (QR kód a kľúče sú na obrázku zakryté)](docs/img/08-client-created.png)
+   ![Stránka po vytvorení klienta (QR kód je ukážka s neplatnými kľúčmi, kľúče v texte sú zakryté)](docs/img/08-client-created.png)
 
 5. Ak IP už používa iný klient, modul upozorní, že pregenerovanie zneplatní
    starého klienta, a vyžiada potvrdenie. Rovnaký názov pre dve rôzne IP
@@ -418,7 +418,7 @@ sudo rm -rf /usr/share/webmin/wireguard
 | `wireguard/log_parser.pl` | Čitateľné záznamy v Webmin Actions Log. |
 | `wireguard/lang/<jazyk>` | Texty (12 jazykov, pozri Jazyky). |
 | `wireguard/images/icon.gif` | Ikona modulu. |
-| `docs/img/*.png` | Orezané screenshoty stránok modulu použité v tomto dokumente (kľúče, QR a WAN sú zakryté). |
+| `docs/img/*.png` | Orezané screenshoty stránok modulu použité v tomto dokumente (kľúče a WAN sú zakryté, QR kód je ukážka s neplatnými kľúčmi). |
 
 ## Jazyky
 

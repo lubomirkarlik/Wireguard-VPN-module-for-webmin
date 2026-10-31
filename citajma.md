@@ -1,4 +1,4 @@
-# Vlastný WireGuard VPN pre domácu LAN
+# Vlastná WireGuard VPN pre domácu LAN
 
 English version: [readme.md](readme.md)
 
@@ -55,7 +55,7 @@ Ak chceš VPN spravovať cez Webmin, pozri [`webmin/citajma.md`](webmin/citajma.
 - Webmin modul je overený na živom Webmine 2.670 (Debian 12): inštalácia,
   nastavenie servera, prehľad servera, stav inštalácie, pridanie zariadenia
   vrátane jeho skutočného pripojenia a zmazanie zariadenia. Zmena nastavení a
-  odinštalovanie sú overené len na simulovanom prostredí.
+  odinštalovanie sú overené len v simulovanom prostredí.
 - Shell skripty sú skontrolované na syntax (`bash -n`). Pred nasadením na NAS ich
   skús celé spustiť na testovacom stroji.
 

@@ -176,7 +176,7 @@ server public key and the WAN are covered in the pictures:
    configuration file** and import the file into the WireGuard app.
 4. Then close the page. The private key is not stored anywhere.
 
-   ![The page after a client is created (the QR code and the keys are covered in the picture)](docs/img/08-client-created.png)
+   ![The page after a client is created (the QR code is a sample with invalid keys, the keys in the text are covered)](docs/img/08-client-created.png)
 
 5. If the IP is already used by another client, the module warns that
    regenerating invalidates the old client and asks for confirmation. The same
@@ -437,7 +437,7 @@ sudo rm -rf /usr/share/webmin/wireguard
 | `wireguard/log_parser.pl` | Readable entries in the Webmin Actions Log. |
 | `wireguard/lang/<lang>` | Texts (12 languages, see Languages). |
 | `wireguard/images/icon.gif` | The module icon. |
-| `docs/img/*.png` | Cropped screenshots of the module pages used in this document (keys, QR code and WAN are covered). |
+| `docs/img/*.png` | Cropped screenshots of the module pages used in this document (keys and WAN are covered, the QR code is a sample with invalid keys). |
 
 ## Languages
 
