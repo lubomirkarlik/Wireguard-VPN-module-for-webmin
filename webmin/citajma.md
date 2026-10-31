@@ -82,9 +82,9 @@ japončina (pozri Jazyky).
 
 ### Cez Webmin (odporúčané)
 
-1. Získaj `wireguard.wbm.gz`: stiahni ho zo stránky **Releases** repozitára alebo
-   si ho zostav sám cez `./build.sh` (pozri Zostavenie balíka). Skopíruj ho na počítač, z ktorého
-   otváraš Webmin.
+1. Získaj [`wireguard.wbm.gz`](wireguard.wbm.gz) z tohto priečinka alebo zo
+   stránky **Releases** repozitára, prípadne si ho zostav sám cez `./build.sh`
+   (pozri Zostavenie balíka). Skopíruj ho na počítač, z ktorého otváraš Webmin.
 2. Webmin → **Webmin Configuration** → **Webmin Modules** → **From uploaded
    file**, vyber `wireguard.wbm.gz` a klikni na **Install Module**.
 3. Modul sa zobrazí v kategórii **Networking** ako **WireGuard VPN**. Ak ho
@@ -399,7 +399,8 @@ sudo rm -rf /usr/share/webmin/wireguard
 
 | Súbor | Účel |
 |-------|------|
-| `build.sh` | Zostaví inštalačný balík `wireguard.wbm.gz` z priečinka `wireguard/` (balík nie je v gite, zverejni ho ako Release). |
+| `wireguard.wbm.gz` | Inštalačný balík modulu zostavený z priečinka `wireguard/`. |
+| `build.sh` | Zostaví `wireguard.wbm.gz` z priečinka `wireguard/`. |
 | `wireguard/module.info` | Názov, kategória a popis modulu. |
 | `wireguard/config`, `config.info`, `config.info.<jazyk>` | Predvolené nastavenia a ich popisy. |
 | `wireguard/wireguard-lib.pl` | Spoločné funkcie: čítanie a zápis `wg0.conf`, generovanie kľúčov, QR, ovládanie tunela. |
@@ -444,5 +445,5 @@ Po zmene súborov v `wireguard/` vytvor balík znova (v priečinku `webmin`):
 ./build.sh
 ```
 
-Skript nastaví práva a vytvorí `wireguard.wbm.gz` vedľa seba (súbor je v
-`.gitignore`, pripoj ho k verzii na GitHube cez Releases).
+Skript nastaví práva a vytvorí `wireguard.wbm.gz` vedľa seba. Nový balík commitni
+spolu so zmenou a pripoj ho k verzii na GitHube cez Releases.

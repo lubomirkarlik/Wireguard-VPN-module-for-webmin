@@ -90,9 +90,9 @@ Brazilian Portuguese, Russian, Polish, Czech, Simplified Chinese and Japanese
 
 ### Through Webmin (recommended)
 
-1. Get `wireguard.wbm.gz`: download it from the repository's **Releases** page,
-   or build it yourself with `./build.sh` (see Building the package). Copy it to
-   the computer you open Webmin from.
+1. Get [`wireguard.wbm.gz`](wireguard.wbm.gz) from this folder or from the
+   repository's **Releases** page, or build it yourself with `./build.sh` (see
+   Building the package). Copy it to the computer you open Webmin from.
 2. Webmin → **Webmin Configuration** → **Webmin Modules** → **From uploaded
    file**, choose `wireguard.wbm.gz` and click **Install Module**.
 3. The module appears in the **Networking** category as **WireGuard VPN**. If
@@ -418,7 +418,8 @@ sudo rm -rf /usr/share/webmin/wireguard
 
 | File | Purpose |
 |------|---------|
-| `build.sh` | Builds the installation package `wireguard.wbm.gz` from the `wireguard/` folder (the package itself is not in git, publish it as a Release). |
+| `wireguard.wbm.gz` | The module installation package, built from the `wireguard/` folder. |
+| `build.sh` | Builds `wireguard.wbm.gz` from the `wireguard/` folder. |
 | `wireguard/module.info` | Module name, category and description. |
 | `wireguard/config`, `config.info`, `config.info.<lang>` | Default settings and their descriptions. |
 | `wireguard/wireguard-lib.pl` | Shared functions: reading and writing `wg0.conf`, key generation, QR, tunnel control. |
@@ -464,5 +465,5 @@ folder):
 ./build.sh
 ```
 
-The script sets the permissions and creates `wireguard.wbm.gz` next to it (the
-file is in `.gitignore`; attach it to a GitHub Release).
+The script sets the permissions and creates `wireguard.wbm.gz` next to it.
+Commit the new package together with the change and attach it to a GitHub Release.

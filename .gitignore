@@ -1,5 +1,4 @@
-# Built Webmin module package (publish it as a GitHub Release instead)
-*.wbm.gz
+# Webmin module build output
 webmin/dist/
 
 # Never commit WireGuard configs, keys or generated client files
@@ -11,6 +10,10 @@ clients/
 
 # Article drafts (not part of the published project)
 clanok/
+
+# PDF exports of the readme pages
+/readme.pdf
+/citajma.pdf
 
 # Local tool and OS files
 .claude/
