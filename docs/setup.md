@@ -107,11 +107,14 @@ sudo ./add-wg-client.sh
 
 - Vypíše existujúcich klientov a vypýta len údaje o zariadení:
   - IP adresu v tuneli (ponúkne prvú voľnú, stačí zadať posledné číslo),
-  - názov zariadenia (písmená, čísla, `_`, `-`).
+  - názov zariadenia (písmená, čísla, `_`, `-`),
+  - či zariadenie vie čítať QR kód. Pri odpovedi `n` skript QR nevypíše, súbor
+    `.conf` skopíruje do domovského priečinka používateľa a vypíše príkaz na
+    stiahnutie (pozri [Windows 11](#windows-11-notebook-pc)).
 - WAN, port, podsieť a kľúč servera sa nepýtajú, preberú sa z `wg0.conf` a
   `/etc/wireguard/.endpoint`. Prepísať sa dajú premennými: `ENDPOINT=...`
   (iný WAN, uloží sa), `WG_PSK=...` (vlastný PSK), `LAN`, `DNS`,
-  `KEEP_FILES=1` (súbory `.conf` a `.png` na konci nezmaže, treba pre Windows).
+  `KEEP_FILES=1` (nepýta sa na QR a postupuje ako pri odpovedi `n`).
 - Vygeneruje kľúče a PSK, pridá peera do `wg0.conf` (záloha predtým) a načíta
   zmenu cez `wg syncconf`, takže ostatné zariadenia ostanú pripojené.
 - Ak zadaná IP už existuje, po potvrdení **pregeneruje kľúče** a nahradí starý
@@ -162,6 +165,7 @@ Existing clients:
 
 Device IP address in the tunnel [10.66.66.2] (the last number is enough):
 Device name [device2]: SamsungS25
+Can this device scan a QR code? [Y/n]:
 WAN: my-ddns.example.com (saved in /etc/wireguard/.endpoint, to change: ENDPOINT=... sudo -E ./add-wg-client.sh)
 Backup: /etc/wireguard/wg0.conf.bak.20261030-193005
 Client 'SamsungS25' (10.66.66.2) is active on the server.
@@ -185,6 +189,7 @@ Existing clients:
 
 Device IP address in the tunnel [10.66.66.3] (the last number is enough):
 Device name [device3]: Tablet
+Can this device scan a QR code? [Y/n]:
 ```
 
 Pregenerovanie existujúceho zariadenia (zadaná IP už existuje):
@@ -194,6 +199,7 @@ Device IP address in the tunnel [10.66.66.3] (the last number is enough): 2
 The IP 10.66.66.2 is already used by 'SamsungS25'. The keys will be regenerated and the old client stops working.
 Continue? [y/N] y
 Device name [SamsungS25]:
+Can this device scan a QR code? [Y/n]:
 ```
 
 Okno terminálu je nižšie ako QR kód:
@@ -278,25 +284,22 @@ telefón: zariadenie pridáš cez `add-wg-client.sh` (vlastná IP, napr.
 `10.66.66.3`, a názov). Aplikácia pre Windows ale nevie naskenovať QR kód, preto
 treba konfiguračný súbor `.conf`.
 
-1. Na NAS spusti skript tak, aby súbory nezmazal:
+Rovnako sa nastavujú aj ďalšie zariadenia bez čítačky QR kódu (Linux, router).
 
-   ```bash
-   KEEP_FILES=1 sudo -E ./add-wg-client.sh
-   ```
-
-2. Skopíruj konfiguráciu do domovského priečinka (súbor v
-   `/etc/wireguard/clients/` môže čítať len root). Nahraď `NAZOV` názvom
-   zariadenia. Krátky názov bez medzier je lepší, aplikácia podľa neho
+1. Na NAS spusti skript a na otázku `Can this device scan a QR code?` odpovedz
+   `n`. Krátky názov zariadenia bez medzier je lepší, aplikácia podľa neho
    pomenuje tunel.
 
    ```bash
-   sudo install -o "$USER" -m 600 /etc/wireguard/clients/NAZOV.conf ~/NAZOV.conf
+   sudo ./add-wg-client.sh
    ```
 
-3. Na Windows (PowerShell) stiahni súbor. Nahraď `pouzivatel` a `ip-nas`:
+2. Skript skopíruje `NAZOV.conf` do tvojho domovského priečinka a vypíše presný
+   príkaz na stiahnutie.
+3. Na Windows (PowerShell) spusti vypísaný príkaz. Vyzerá takto:
 
    ```powershell
-   scp pouzivatel@ip-nas:NAZOV.conf .
+   scp pouzivatel@ip-nas:/home/pouzivatel/NAZOV.conf .
    ```
 
 4. V aplikácii WireGuard klikni na **Add Tunnel** (šípka vedľa) → **Import

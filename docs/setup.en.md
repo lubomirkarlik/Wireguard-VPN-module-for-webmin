@@ -114,12 +114,15 @@ sudo ./add-wg-client.sh
 - Lists the existing clients and asks only for the device details:
   - the IP address in the tunnel (the first free one is suggested, entering just
     the last number is enough),
-  - the device name (letters, digits, `_`, `-`).
+  - the device name (letters, digits, `_`, `-`),
+  - whether the device can scan a QR code. If you answer `n`, the script does not
+    print the QR code, copies the `.conf` file to the user's home folder and
+    prints the download command (see [Windows 11](#windows-11-laptop-pc)).
 - The WAN, port, subnet and server key are not asked, they are taken from
   `wg0.conf` and `/etc/wireguard/.endpoint`. You can override them with
   variables: `ENDPOINT=...` (different WAN, saved), `WG_PSK=...` (your own PSK),
-  `LAN`, `DNS`, `KEEP_FILES=1` (does not delete the `.conf` and `.png` at the
-  end, needed for Windows).
+  `LAN`, `DNS`, `KEEP_FILES=1` (does not ask about the QR code and works as if
+  you answered `n`).
 - Generates the keys and the PSK, adds the peer to `wg0.conf` (after a backup)
   and loads the change with `wg syncconf`, so the other devices stay connected.
 - If the entered IP already exists, after confirmation it **regenerates the
@@ -173,6 +176,7 @@ Existing clients:
 
 Device IP address in the tunnel [10.66.66.2] (the last number is enough):
 Device name [device2]: SamsungS25
+Can this device scan a QR code? [Y/n]:
 WAN: my-ddns.example.com (saved in /etc/wireguard/.endpoint, to change: ENDPOINT=... sudo -E ./add-wg-client.sh)
 Backup: /etc/wireguard/wg0.conf.bak.20261030-193005
 Client 'SamsungS25' (10.66.66.2) is active on the server.
@@ -196,6 +200,7 @@ Existing clients:
 
 Device IP address in the tunnel [10.66.66.3] (the last number is enough):
 Device name [device3]: Tablet
+Can this device scan a QR code? [Y/n]:
 ```
 
 Regenerating an existing device (the entered IP already exists):
@@ -205,6 +210,7 @@ Device IP address in the tunnel [10.66.66.3] (the last number is enough): 2
 The IP 10.66.66.2 is already used by 'SamsungS25'. The keys will be regenerated and the old client stops working.
 Continue? [y/N] y
 Device name [SamsungS25]:
+Can this device scan a QR code? [Y/n]:
 ```
 
 The terminal window is shorter than the QR code:
@@ -290,25 +296,22 @@ as for a phone: add the device with `add-wg-client.sh` (its own IP, e.g.
 `10.66.66.3`, and a name). The Windows app cannot scan a QR code though, so you
 need the `.conf` configuration file.
 
-1. On the NAS run the script so that it does not delete the files:
+Other devices without a QR scanner (Linux, a router) are set up the same way.
+
+1. On the NAS run the script and answer `n` to `Can this device scan a QR code?`.
+   A short device name without spaces is better, the app names the tunnel after
+   it.
 
    ```bash
-   KEEP_FILES=1 sudo -E ./add-wg-client.sh
+   sudo ./add-wg-client.sh
    ```
 
-2. Copy the configuration to your home folder (the file in
-   `/etc/wireguard/clients/` is readable only by root). Replace `NAME` with the
-   device name. A short name without spaces is better, the app names the tunnel
-   after it.
-
-   ```bash
-   sudo install -o "$USER" -m 600 /etc/wireguard/clients/NAME.conf ~/NAME.conf
-   ```
-
-3. On Windows (PowerShell) download the file. Replace `user` and `nas-ip`:
+2. The script copies `NAME.conf` to your home folder and prints the exact
+   download command.
+3. On Windows (PowerShell) run the printed command. It looks like this:
 
    ```powershell
-   scp user@nas-ip:NAME.conf .
+   scp user@nas-ip:/home/user/NAME.conf .
    ```
 
 4. In the WireGuard app click **Add Tunnel** (the arrow next to it) → **Import

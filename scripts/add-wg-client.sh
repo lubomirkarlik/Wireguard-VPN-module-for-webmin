@@ -5,7 +5,7 @@
 # The server (port, subnet, key) and the WAN are read from wg0.conf and /etc/wireguard/.endpoint, never asked again.
 # The LAN (subnet of the server's network card) and the DNS (its default gateway) are detected.
 # Optional: ENDPOINT=... (different WAN), WG_PSK=... (your own PSK), LAN=..., DNS=...,
-#   KEEP_FILES=1 (do not delete the .conf and .png at the end, needed for Windows/PC)
+#   KEEP_FILES=1 (device without a QR scanner, do not ask: keep the .conf and .png and copy the .conf for download)
 # If the entered IP address already exists, the keys are regenerated and the old client stops working.
 set -euo pipefail
 
@@ -89,6 +89,12 @@ read -r -p "Device name [$default_name]: " name
 name="${name:-$default_name}"
 case "$name" in *[!A-Za-z0-9_-]*|'') echo "The name may contain only letters, digits, '_' and '-'." >&2; exit 1 ;; esac
 
+# Windows, Linux and routers have no QR scanner, they need the .conf file.
+if [ -z "${KEEP_FILES:-}" ]; then
+  read -r -p "Can this device scan a QR code? [Y/n] " ans
+  case "$ans" in n|N) KEEP_FILES=1 ;; esac
+fi
+
 # The WAN is entered only once (regen-wg.sh saves it); here it is just read.
 endpoint="${ENDPOINT:-$(cat "$ENDPOINT_FILE" 2>/dev/null || true)}"
 if [ -z "$endpoint" ]; then
@@ -164,6 +170,22 @@ else
 fi
 echo "Client '$name' ($ip_in) is active on the server."
 echo "Files: $client_conf and $OUT_DIR/$name.png (they contain the private key, root-only)."
+
+# --- no QR scanner: copy the .conf where a normal user can download it -------
+if [ "${KEEP_FILES:-0}" = "1" ]; then
+  dl_user="${SUDO_USER:-root}"
+  dl_home="$(getent passwd "$dl_user" | cut -d: -f6)"
+  dl_file="${dl_home:-/root}/$name.conf"
+  install -o "$dl_user" -m 600 "$client_conf" "$dl_file"
+  nas_ip="$(ip -4 -o addr show dev "$nic" scope global 2>/dev/null | awk '{sub(/\/.*/,"",$4); print $4; exit}' || true)"
+  echo
+  echo "Download the configuration on the device (run it there):"
+  echo "  scp $dl_user@${nas_ip:-nas-ip}:$dl_file ."
+  echo "Then import $name.conf in the WireGuard app and delete the key files here:"
+  echo "  sudo shred -u $dl_file $client_conf $OUT_DIR/$name.png"
+  exit 0
+fi
+
 echo "They are securely deleted at the end of the script (shred -u) unless you choose 'q'."
 echo
 
@@ -185,9 +207,5 @@ clear
 echo "Scan in the WireGuard app (+ -> Scan from QR code), tunnel name: $name"
 printf '%s\n' "$qr"
 
-if [ "${KEEP_FILES:-0}" = "1" ]; then
-  echo "KEEP_FILES=1: the files stayed in $OUT_DIR (they contain the private key). Delete them after use: shred -u $client_conf $OUT_DIR/$name.png"
-else
-  shred -u "$client_conf" "$OUT_DIR/$name.png"
-  echo "Key files deleted (shred -u). The QR code stays on the terminal screen, close it after scanning."
-fi
+shred -u "$client_conf" "$OUT_DIR/$name.png"
+echo "Key files deleted (shred -u). The QR code stays on the terminal screen, close it after scanning."
