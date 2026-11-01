@@ -1,5 +1,7 @@
 # Self-hosted WireGuard VPN for a home LAN
 
+<p align="center"><img src="docs/img/wireguard-vpn.webp" alt="WireGuard VPN" width="332"></p>
+
 Slovak version: [citajma.md](citajma.md)
 
 Reach your home network from a phone or laptop through a WireGuard tunnel that
@@ -14,6 +16,8 @@ those. The LAN and the DNS for clients are detected from the NAS network card
 
 Comfortable configuration of the VPN tunnel and client management are available
 through the Webmin module in the [`webmin/`](webmin/readme.md) subfolder.
+
+![Diagram: phone → encrypted tunnel → router → NAS → LAN devices](docs/img/schema-en.webp)
 
 ## What is in the repository
 

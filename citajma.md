@@ -1,5 +1,7 @@
 # Vlastná WireGuard VPN pre domácu LAN
 
+<p align="center"><img src="docs/img/wireguard-vpn.webp" alt="WireGuard VPN" width="332"></p>
+
 English version: [readme.md](readme.md)
 
 Prístup do domácej siete z telefónu alebo notebooku cez WireGuard tunel, ktorý
@@ -14,6 +16,8 @@ brána). Predvolené hodnoty: tunel `10.66.66.0/24` a `fd42:42:42::/64`, port
 
 Komfortná konfigurácia VPN tunela a správa klientov je možná cez Webmin modul z
 podadresára [`webmin/`](webmin/citajma.md).
+
+![Schéma: telefón → šifrovaný tunel → router → NAS → zariadenia v LAN](docs/img/schema-sk.webp)
 
 ## Obsah repozitára
 

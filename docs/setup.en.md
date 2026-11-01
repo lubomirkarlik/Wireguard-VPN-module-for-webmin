@@ -26,6 +26,8 @@ Values used (defaults in the scripts, they match the original server on the NAS)
 
 ## How it works
 
+![Diagram: phone → encrypted tunnel → router → NAS → LAN devices](img/schema-en.webp)
+
 - The NAS is the WireGuard server and forwards traffic from the tunnel to the LAN.
 - The phone connects to the public IP (or DDNS name) of your USG, and the USG
   forwards UDP `59656` to the NAS.

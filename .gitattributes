@@ -9,6 +9,7 @@ webmin/wireguard/** text eol=lf
 *.png binary
 *.gif binary
 *.gz binary
+*.webp binary
 
 # GitHub otherwise reports the Perl sources as Prolog
 *.pl linguist-language=Perl

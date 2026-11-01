@@ -24,6 +24,8 @@ Použité hodnoty (predvolené v skriptoch, zhodujú sa s pôvodným serverom na
 
 ## Ako to funguje
 
+![Schéma: telefón → šifrovaný tunel → router → NAS → zariadenia v LAN](img/schema-sk.webp)
+
 - NAS je WireGuard server a posiela prevádzku z tunela do LAN.
 - Telefón sa pripojí na verejnú IP (alebo DDNS meno) tvojho USG, USG presmeruje
   UDP `59656` na NAS.
