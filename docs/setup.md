@@ -9,6 +9,10 @@ všetko beží len u teba. Na USG treba iba presmerovať jeden port.
 USG neposkytuje VPN, ktorú by telefón vedel použiť (iba L2TP/PPTP), preto VPN
 beží na NAS. NAS musí byť dostupný z internetu (port forward + verejná IP).
 
+Riešenie je vhodné všade, kde router neumožňuje vytvoriť VPN pripojenie a za
+routerom v sieti LAN je nejaké zariadenie s Linuxom, napríklad NAS alebo
+Raspberry Pi.
+
 Použité hodnoty (predvolené v skriptoch, zhodujú sa s pôvodným serverom na NAS):
 
 | Čo | Hodnota |

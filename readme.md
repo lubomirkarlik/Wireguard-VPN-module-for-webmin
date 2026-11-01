@@ -14,6 +14,9 @@ those. The LAN and the DNS for clients are detected from the NAS network card
 (its subnet and default gateway). Defaults: tunnel `10.66.66.0/24` and
 `fd42:42:42::/64`, port `59656/udp`. All of them can be changed.
 
+The solution suits any network where the router cannot provide a VPN connection
+and a Linux device, such as a NAS or a Raspberry Pi, runs in the LAN behind it.
+
 Comfortable configuration of the VPN tunnel and client management are available
 through the Webmin module in the [`webmin/`](webmin/readme.md) subfolder.
 

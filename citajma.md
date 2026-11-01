@@ -14,6 +14,10 @@ LAN a DNS pre klientov sa zistia zo sieťovej karty NAS (jej podsieť a predvole
 brána). Predvolené hodnoty: tunel `10.66.66.0/24` a `fd42:42:42::/64`, port
 `59656/udp`. Všetko sa dá zmeniť.
 
+Riešenie je vhodné všade, kde router neumožňuje vytvoriť VPN pripojenie a za
+routerom v sieti LAN je nejaké zariadenie s Linuxom, napríklad NAS alebo
+Raspberry Pi.
+
 Komfortná konfigurácia VPN tunela a správa klientov je možná cez Webmin modul z
 podadresára [`webmin/`](webmin/citajma.md).
 

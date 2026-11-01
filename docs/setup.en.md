@@ -11,6 +11,9 @@ The USG does not offer a VPN a phone can use (only L2TP/PPTP), so the VPN runs
 on the NAS. The NAS must be reachable from the internet (port forward and a
 public IP).
 
+The solution suits any network where the router cannot provide a VPN connection
+and a Linux device, such as a NAS or a Raspberry Pi, runs in the LAN behind it.
+
 Values used (defaults in the scripts, they match the original server on the NAS):
 
 | What | Value |
